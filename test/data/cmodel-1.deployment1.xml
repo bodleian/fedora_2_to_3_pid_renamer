@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<foxml:digitalObject VERSION="1.1" PID="changeme:CModel1-SDep1"
+xmlns:foxml="info:fedora/fedora-system:def/foxml#"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="info:fedora/fedora-system:def/foxml# http://www.fedora.info/definitions/1/0/foxml1-1.xsd">
+<foxml:objectProperties>
+<foxml:property NAME="info:fedora/fedora-system:def/model#label" VALUE="Generated deployment for changeme:CModel1 (copy of demo:9)"/>
+</foxml:objectProperties>
+<foxml:datastream ID="DSINPUTSPEC" STATE="A" CONTROL_GROUP="X" VERSIONABLE="true">
+<foxml:datastreamVersion ID="DSINPUTSPEC1.0" LABEL="Datastream Input Specification for UVA MrSID service" CREATED="2015-09-15T13:08:26.575Z" MIMETYPE="text/xml" FORMAT_URI="info:fedora/fedora-system:FedoraDSInputSpec-1.1" SIZE="480">
+<foxml:xmlContent>
+<fbs:DSInputSpec xmlns:fbs="http://fedora.comm.nsdlib.org/service/bindspec" label="MrSID Service Datastream Input Specification">
+					<fbs:DSInput DSMax="1" DSMin="1" DSOrdinality="false" wsdlMsgPartName="DS1">
+						<fbs:DSInputLabel>MrSid file</fbs:DSInputLabel>
+						<fbs:DSMIME>image/x-mrsid-image</fbs:DSMIME>
+						<fbs:DSInputInstruction>MrSid wavelet encoded image file</fbs:DSInputInstruction>
+					</fbs:DSInput>
+				</fbs:DSInputSpec>
+</foxml:xmlContent>
+</foxml:datastreamVersion>
+</foxml:datastream>
+<foxml:datastream ID="METHODMAP" STATE="A" CONTROL_GROUP="X" VERSIONABLE="true">
+<foxml:datastreamVersion ID="METHODMAP1.0" LABEL="Mapping of WSDL to Fedora notion of Method Definitions" CREATED="2015-09-15T13:08:26.575Z" MIMETYPE="text/xml" FORMAT_URI="info:fedora/fedora-system:FedoraSDepMethodMap-1.1" SIZE="1477">
+<foxml:xmlContent>
+<fmm:MethodMap xmlns:fmm="http://fedora.comm.nsdlib.org/service/methodmap" name="MethodMap - MrSID BMech for UserInput Image BDEF">
+					<fmm:Method operationName="getThumbnail" wsdlMsgName="getThumbRequest" wsdlMsgOutput="mrsid_response">
+						<fmm:DatastreamInputParm parmName="DS1" passBy="URL_REF" required=""/>
+						<fmm:MethodReturnType wsdlMsgName="mrsid_response" wsdlMsgTOMIME="image/gif"/>
+					</fmm:Method>
+					<fmm:Method operationName="getImage" wsdlMsgName="getImageRequest" wsdlMsgOutput="mrsid_response">
+						<fmm:UserInputParm defaultValue="yes" parmName="ZOOM" passBy="VALUE" required="true">
+							<fmm:ValidParmValues>
+								<fmm:ValidParm value="yes"/>
+								<fmm:ValidParm value="no"/>
+							</fmm:ValidParmValues>
+						</fmm:UserInputParm>
+						<fmm:UserInputParm defaultValue="medium1" parmName="SIZE" passBy="VALUE" required="true">
+							<fmm:ValidParmValues>
+								<fmm:ValidParm value="small"/>
+								<fmm:ValidParm value="medium1"/>
+								<fmm:ValidParm value="medium2"/>
+							</fmm:ValidParmValues>
+						</fmm:UserInputParm>
+						<fmm:DatastreamInputParm parmName="DS1" passBy="URL_REF" required=""/>
+						<fmm:MethodReturnType wsdlMsgName="mrsid_response" wsdlMsgTOMIME="application/java image/gif"/>
+					</fmm:Method>
+				</fmm:MethodMap>
+</foxml:xmlContent>
+</foxml:datastreamVersion>
+</foxml:datastream>
+<foxml:datastream ID="WSDL" STATE="A" CONTROL_GROUP="X" VERSIONABLE="true">
+<foxml:datastreamVersion ID="WSDL1.0" LABEL="WSDL definition for UVA&apos;s MrSid service" CREATED="2015-09-15T13:08:26.575Z" MIMETYPE="text/xml" FORMAT_URI="http://schemas.xmlsoap.org/wsdl/" SIZE="3325">
+<foxml:xmlContent>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap" xmlns:soapenc="http://schemas.xmlsoap.org/wsdl/soap/encoding" xmlns:this="mrsid" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="MrSID Service" targetNamespace="mrsid">
+					<wsdl:types>
+						<xsd:schema targetNamespace="mrsid">
+							<xsd:simpleType name="MRSIDType">
+								<xsd:restriction base="xsd:string"/>
+							</xsd:simpleType>
+							<xsd:simpleType name="ZOOMType">
+								<xsd:restriction base="xsd:string">
+									<xsd:enumeration value="yes"/>
+									<xsd:enumeration value="no"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+							<xsd:simpleType name="SIZEType">
+								<xsd:restriction base="xsd:string">
+									<xsd:enumeration value="small"/>
+									<xsd:enumeration value="medium1"/>
+									<xsd:enumeration value="medium2"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:schema>
+					</wsdl:types>
+					<wsdl:message name="getThumbRequest">
+						<wsdl:part name="DS1" type="this:MRSIDType"/>
+					</wsdl:message>
+					<wsdl:message name="getImageRequest">
+						<wsdl:part name="DS1" type="this:MRSIDType"/>
+						<wsdl:part name="SIZE" type="this:SIZEType"/>
+						<wsdl:part name="ZOOM" type="this:ZOOMType"/>
+					</wsdl:message>
+					<wsdl:message name="mrsid_response">
+						<wsdl:part name="image" type="xsd:base64Binary"/>
+					</wsdl:message>
+					<wsdl:portType name="MrSIDPortType">
+						<wsdl:operation name="getThumbnail">
+							<wsdl:input message="this:getThumbRequest"/>
+							<wsdl:output message="this:mrsid_response"/>
+						</wsdl:operation>
+						<wsdl:operation name="getImage">
+							<wsdl:input message="this:getImageRequest"/>
+							<wsdl:output message="this:mrsid_response"/>
+						</wsdl:operation>
+					</wsdl:portType>
+					<wsdl:service name="MrSID">
+						<wsdl:port binding="this:MrSID_http" name="MrSID_port">
+							<http:address location="http://iris.lib.virginia.edu/mrsid/bin/"/>
+						</wsdl:port>
+					</wsdl:service>
+					<wsdl:binding name="MrSID_http" type="this:MrSIDPortType">
+						<http:binding verb="GET"/>
+						<wsdl:operation name="getThumbnail">
+							<http:operation location="get_mrsid_url.pl?image=(DS1)&amp;size=thumbnail"/>
+							<wsdl:input>
+								<http:urlReplacement/>
+							</wsdl:input>
+							<wsdl:output>
+								<mime:content type="image/gif"/>
+							</wsdl:output>
+						</wsdl:operation>
+						<wsdl:operation name="getImage">
+							<http:operation location="get_mrsid_url.pl?image=(DS1)&amp;size=(SIZE)&amp;zoom=(ZOOM)"/>
+							<wsdl:input>
+								<http:urlReplacement/>
+							</wsdl:input>
+							<wsdl:output>
+								<mime:content type="text/html"/>
+								<mime:content type="image/jpeg"/>
+							</wsdl:output>
+						</wsdl:operation>
+					</wsdl:binding>
+				</wsdl:definitions>
+</foxml:xmlContent>
+</foxml:datastreamVersion>
+</foxml:datastream>
+<foxml:datastream ID="RELS-EXT" STATE="A" CONTROL_GROUP="X" VERSIONABLE="true">
+<foxml:datastreamVersion ID="RELS-EXT1.0" LABEL="RDF Statements about this object" CREATED="2015-09-16T10:16:38.426Z" MIMETYPE="application/rdf+xml" FORMAT_URI="info:fedora/fedora-system:FedoraRELSExt-1.0">
+<foxml:xmlContent>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:fedora-model="info:fedora/fedora-system:def/model#">
+  <rdf:Description rdf:about="info:fedora/changeme:CModel1-SDep1">
+    <fedora-model:isDeploymentOf rdf:resource="info:fedora/demo:8"/>
+    <fedora-model:isContractorOf rdf:resource="info:fedora/changeme:CModel1"/>
+    <fedora-model:hasModel rdf:resource="info:fedora/fedora-system:ServiceDeployment-3.0"/>
+  </rdf:Description>
+</rdf:RDF>
+</foxml:xmlContent>
+</foxml:datastreamVersion>
+</foxml:datastream>
+<foxml:datastream ID="DS1" STATE="A" CONTROL_GROUP="E" VERSIONABLE="true">
+<foxml:datastreamVersion ID="DS1.0" LABEL="Programmer documentation" CREATED="2015-09-15T13:08:26.575Z" MIMETYPE="text/html">
+<foxml:contentLocation TYPE="URL" REF=" http://uva.lib.edu/mech/mrsid/doc/mrsid.html"/>
+</foxml:datastreamVersion>
+</foxml:datastream>
+<foxml:datastream ID="DC" STATE="A" CONTROL_GROUP="X" VERSIONABLE="true">
+<foxml:datastreamVersion ID="DC1.0" LABEL="Dublin Core Metadata" CREATED="2015-09-15T13:08:26.575Z" MIMETYPE="text/xml" FORMAT_URI="http://www.openarchives.org/OAI/2.0/oai_dc/" SIZE="306">
+<foxml:xmlContent>
+<oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <dc:title>Behavior Mechanism Object implementing the UserInput Image BDEF contract using the UVA MrSID Service.</dc:title>
+  <dc:identifier>demo:9</dc:identifier>
+</oai_dc:dc>
+</foxml:xmlContent>
+</foxml:datastreamVersion>
+</foxml:datastream>
+<foxml:datastream ID="SERVICE-PROFILE" STATE="A" CONTROL_GROUP="X" VERSIONABLE="true">
+<foxml:datastreamVersion ID="SERVICE-PROFILE1.0" LABEL="Service Profile - Technical description of the service" CREATED="2015-09-15T13:08:26.575Z" MIMETYPE="text/xml" SIZE="1310">
+<foxml:xmlContent>
+<fsvp:serviceProfile xmlns:fsvp="http://fedora.comm.nsdlib.org/service/profile" bDefPID="demo:8" name="MrSID Service">
+					<fsvp:serviceDescription>MrSID service for providing different image resolutions from a wavelet encoded file, along with zoom capability </fsvp:serviceDescription>
+					<fsvp:serviceImplementation>
+						<fsvp:serviceLiveTestURL>http://iris.lib.virginia.edu/mrsid</fsvp:serviceLiveTestURL>
+						<fsvp:serviceMessagingProtocol>HTTP GET</fsvp:serviceMessagingProtocol>
+						<fsvp:serviceInputFormats>
+							<fsvp:MIMEType>image/x-mrsid-image</fsvp:MIMEType>
+						</fsvp:serviceInputFormats>
+						<fsvp:serviceOutputFormats>
+							<fsvp:MIMEType>text/html</fsvp:MIMEType>
+							<fsvp:MIMEType>image/gif</fsvp:MIMEType>
+							<fsvp:MIMEType>image/jpeg</fsvp:MIMEType>
+							<fsvp:MIMEType>application/java</fsvp:MIMEType>
+						</fsvp:serviceOutputFormats>
+						<fsvp:serviceImplDependencies>
+							<fsvp:software license="Commercial" name="MrSID Image Server" opensource="false" type="Server_Application" version="2.2"></fsvp:software>
+							<fsvp:software license="GNU_GPL" name="perl" opensource="true" type="Programming_Language" version="5.6"></fsvp:software>
+						</fsvp:serviceImplDependencies>
+					</fsvp:serviceImplementation>
+				</fsvp:serviceProfile>
+</foxml:xmlContent>
+</foxml:datastreamVersion>
+</foxml:datastream>
+</foxml:digitalObject>

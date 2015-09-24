@@ -4,17 +4,21 @@ changes:
   CModel1: thesis
   CModel1-SDep1: thesis-SDep1
 
-# How changeme element will be renamed
+# How changeme text will be renamed
 changeme: bodl
 
+folders:
+  input: 'test/data/input'
+  output: 'test/data/output'
+
+# Xpath locations where elements need to be renamed
+locations:
+  - "//foxml:digitalObject/@PID"
+  - "//rdf:Description/@rdf:about"
+  - "//fedora-model:isContractorOf/@rdf:resource"
+  
 # Namespaces within documents - needed to process XML
 namespaces:
   foxml: "info:fedora/fedora-system:def/foxml#"
   rdf: "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
   fedora-model: "info:fedora/fedora-system:def/model#"
-
-# Locations where elements need to be renamed
-locations:
-  - "//foxml:digitalObject/@PID"
-  - "//rdf:Description/@rdf:about"
-  - "//fedora-model:isContractorOf/@rdf:resource"

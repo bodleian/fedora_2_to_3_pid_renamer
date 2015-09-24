@@ -14,6 +14,22 @@ module Fedora2To3PidRenamer
       assert_at_xpath_text_changes(before, after) { manipulator.run }
     end
     
+    def test_output
+      assert_equal Nokogiri::XML(xml_raw).to_s, manipulator.output
+    end
+    
+    def test_run_alters_output
+      manipulator.run
+      refute_equal Nokogiri::XML(xml_raw).to_s, manipulator.output
+    end
+    
+    def test_run_produces_well_formed_xml
+      manipulator.run
+      doc = Nokogiri::XML manipulator.output
+      assert doc.errors.empty?, "Nokogiri should not find errors: #{doc.errors}"
+    end
+    
+    private
     def assert_at_xpath_text_changes(before, after)
       xpath = config.locations.first
       
@@ -27,6 +43,7 @@ module Fedora2To3PidRenamer
       refute_match before, text_after
       assert_match after, text_after
     end
+    
 
     def manipulator
       @manipulator ||= Manipulator.new(xml_raw, config)

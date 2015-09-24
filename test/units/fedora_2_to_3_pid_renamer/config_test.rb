@@ -30,7 +30,16 @@ module Fedora2To3PidRenamer
       config = Config.load(config_file_path)
       assert_equal config_yml['changes'], config.changes
     end
+    
+    def test_input_folder
+      assert_match File.join('test', 'data', 'input'), config.input_folder 
+    end
+    
+    def test_input_folder
+      assert_match File.join('test', 'data', 'output'), config.output_folder 
+    end
 
+    private
     def config
       @config ||= Config.new(config_source)
     end

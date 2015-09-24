@@ -17,6 +17,10 @@ module Fedora2To3PidRenamer
       @xml ||= Nokogiri::XML(raw_xml)
     end
     
+    def output
+      xml.to_s
+    end
+    
     private
     def modify_text_at_each_location_in_config
       config.locations.each do |location|

@@ -3,6 +3,12 @@ module Fedora2To3PidRenamer
   class Manipulator
 
     attr_accessor :raw_xml, :config
+    
+    def self.output_for(raw_xml, config)
+      manipulator = new(raw_xml, config)
+      manipulator.run
+      manipulator.output
+    end
 
     def initialize(raw_xml, config)
       @raw_xml = raw_xml

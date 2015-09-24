@@ -29,6 +29,11 @@ module Fedora2To3PidRenamer
       assert doc.errors.empty?, "Nokogiri should not find errors: #{doc.errors}"
     end
     
+    def test_output_for
+      manipulator.run
+      assert_equal manipulator.output, Manipulator.output_for(xml_raw, config)
+    end
+    
     private
     def assert_at_xpath_text_changes(before, after)
       xpath = config.locations.first
@@ -47,10 +52,6 @@ module Fedora2To3PidRenamer
 
     def manipulator
       @manipulator ||= Manipulator.new(xml_raw, config)
-    end
-
-    def config
-      @config ||= Config.load(config_file_path)
     end
 
     def xml_raw

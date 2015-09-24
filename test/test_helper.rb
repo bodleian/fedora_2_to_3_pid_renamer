@@ -1,6 +1,6 @@
 require 'minitest/autorun'
-require_relative '../lib/fedora_2_to_3_pid_renamer'
 require 'nokogiri'
+require_relative '../lib/fedora_2_to_3_pid_renamer'
 
 class Minitest::Test
   def xml_load(file_name)
@@ -15,7 +15,15 @@ class Minitest::Test
   def file_read(file_name)
     File.read data_file_path(file_name)
   end
+  
+  def config
+    @config ||= Fedora2To3PidRenamer::Config.new(config_source)
+  end
 
+  def config_source
+    @config_source ||= File.read config_file_path
+  end
+  
   def config_file_path
     data_file_path 'config.yml'
   end

@@ -7,6 +7,9 @@ changes:
 # How changeme text will be renamed
 changeme: bodl
 
+# folders where target files are located (input), 
+# and where the modified files will be placed (output)
+# relative paths will be relative to the working directory
 folders:
   input: 'test/data/input'
   output: 'test/data/output'

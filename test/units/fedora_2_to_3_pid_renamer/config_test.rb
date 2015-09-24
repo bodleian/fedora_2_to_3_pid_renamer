@@ -40,13 +40,6 @@ module Fedora2To3PidRenamer
     end
 
     private
-    def config
-      @config ||= Config.new(config_source)
-    end
-
-    def config_source
-      @config_source ||= File.read config_file_path
-    end
 
     def config_yml
       @config_yml ||= YAML.load(config_source)

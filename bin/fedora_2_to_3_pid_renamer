@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+require 'fedora_2_to_3_pid_renamer'
+
+config_path = ARGV.first || 'config.yml'
+
+raise "Config file not found" unless File.exist?(config_path)
+
+config = Fedora2To3PidRenamer::Config.load config_path
+
+puts 'Creating files:'
+manager = Fedora2To3PidRenamer::Manager.new config
+manager.run_manipulation
+
+puts 'Process complete'

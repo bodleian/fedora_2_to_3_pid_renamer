@@ -8,8 +8,8 @@ created during the migration of fedora 2 data to fedora 3
 open source repository system for the management and dissemination of digital content.
 
 When [migrating from version 2 to 3](http://fedorarepository.org/sites/fedorarepository.org/files/documentation/3.2.1/index.html)
-the process involves running an Analyzer, that output a series of file. Among 
-these files are a series of XML files that describe the data objects that 
+the process involves running an Analyzer, that outputs a series of files. 
+Among these files are a some XML files that describe the data objects that 
 are in the existing Fedora 2 database. These files need to be manipulated
 so as to modify the Fedora 2 objects so that they will suitable to be inserted
 into a Fedora 3 database.
@@ -54,8 +54,8 @@ namespaces:
 The Analyzer will create model names from the Fedora 2 data. These often need to 
 be changed to domain specific names. 
 
-Each change has a key and value where the key is the Analyzer name and the value
-is the domain specific name that should replace it.
+Each change has a key and value where the key is the Analyzer generated name and 
+the value is the domain specific name that should replace it.
 
 ### changeme
 

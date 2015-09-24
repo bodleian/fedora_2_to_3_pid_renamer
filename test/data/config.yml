@@ -5,7 +5,7 @@ changes:
   CModel1-SDep1: thesis-SDep1
 
 # How changeme text will be renamed
-changeme: bodl
+changeme: foo
 
 # folders where target files are located (input), 
 # and where the modified files will be placed (output)

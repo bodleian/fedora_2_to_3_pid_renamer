@@ -1,15 +1,46 @@
 #!/usr/bin/env ruby
 
 require 'fedora_2_to_3_pid_renamer'
+require 'optparse'
 
-config_path = ARGV.first || 'config.yml'
+options = {}
 
-raise "Config file not found" unless File.exist?(config_path)
+opt_parser = OptionParser.new do |opt|  
 
-config = Fedora2To3PidRenamer::Config.load config_path
+  opt.banner = "Usage: fedora_2_to_3_pid_renamer [OPTIONS]"
+  opt.separator  ""
+  opt.separator  "Options"
 
-puts 'Creating files:'
-manager = Fedora2To3PidRenamer::Manager.new config
-manager.run_manipulation
+  opt.on("-c","--config PATH","the PATH to the config file") do |config|
+    options[:config] = config
+  end
 
-puts 'Process complete'
+  opt.on("-h","--help","help") do
+    options[:help] = true
+  end
+end
+
+opt_parser.parse!  
+
+config_path = options[:config] || 'config.yml'
+
+if options[:help]
+
+  puts opt_parser
+
+elsif !File.exist?(config_path)
+
+  puts "Config file not found: #{config_path}\n"
+  puts opt_parser
+
+else
+
+  config = Fedora2To3PidRenamer::Config.load config_path
+
+  puts 'Creating files:'
+  manager = Fedora2To3PidRenamer::Manager.new config
+  manager.run_manipulation
+
+  puts 'Process complete'
+
+end

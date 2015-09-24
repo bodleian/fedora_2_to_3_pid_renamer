@@ -1,4 +1,4 @@
-require_relative "../test_helper"
+require_relative '../test_helper'
 
 class Fedora2To3PidRenamerTest < Minitest::Test
 
@@ -8,7 +8,7 @@ class Fedora2To3PidRenamerTest < Minitest::Test
 
   def test_data_can_be_loaded
     lines = File.readlines(xml_file_path)
-    expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+    expected = '<?xml version="1.0" encoding="UTF-8"?>'
     assert_equal expected, lines.first.strip
   end
 
@@ -21,17 +21,17 @@ class Fedora2To3PidRenamerTest < Minitest::Test
   end
 
   def test_get_xml_attribute
-    expected = "changeme:CModel1"
+    expected = 'changeme:CModel1'
     xml = xml_load(xml_file_name)
-    namespaces = {"foxml" => "info:fedora/fedora-system:def/foxml#"}
-    node = xml.xpath("//foxml:digitalObject/@PID", namespaces)
+    namespaces = {'foxml' => 'info:fedora/fedora-system:def/foxml#'}
+    node = xml.xpath('//foxml:digitalObject/@PID', namespaces)
     assert_equal expected, node.text
   end
 
   def test_get_xml_attribute_from_simple
-    xml = xml_load("simple.xml")
-    node = xml.xpath("//foo/@ID")
-    assert_equal "bar", node.text
+    xml = xml_load('simple.xml')
+    node = xml.xpath('//foo/@ID')
+    assert_equal 'bar', node.text
   end
 
   def xml_file_path
@@ -39,7 +39,7 @@ class Fedora2To3PidRenamerTest < Minitest::Test
   end
 
   def xml_file_name
-    "cmodel-1.xml"
+    'cmodel-1.xml'
   end
 
 end

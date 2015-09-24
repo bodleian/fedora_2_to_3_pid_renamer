@@ -1,4 +1,4 @@
-require "yaml"
+require 'yaml'
 module Fedora2To3PidRenamer
   class Config
 
@@ -13,15 +13,15 @@ module Fedora2To3PidRenamer
     end
 
     def namespaces
-      @namespaces ||= yaml["namespaces"]
+      @namespaces ||= yaml['namespaces']
     end
 
     def locations
-      @locations ||= yaml["locations"]
+      @locations ||= yaml['locations']
     end
 
     def changes
-      @changes ||= yaml["changes"]
+      @changes ||= yaml['changes']
     end
 
     def change_for(original)
@@ -29,7 +29,7 @@ module Fedora2To3PidRenamer
     end
 
     def changeme_replacement
-      yaml["changeme"]
+      yaml['changeme']
     end
 
     def yaml

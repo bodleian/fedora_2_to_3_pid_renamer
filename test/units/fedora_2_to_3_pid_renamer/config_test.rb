@@ -1,34 +1,34 @@
-require_relative "../../test_helper"
+require_relative '../../test_helper'
 
 module Fedora2To3PidRenamer
   class ConfigTest < Minitest::Test
 
     def test_namespaces
-      assert_equal config_yml["namespaces"], config.namespaces
+      assert_equal config_yml['namespaces'], config.namespaces
     end
 
     def test_locations
-      assert_equal config_yml["locations"], config.locations
+      assert_equal config_yml['locations'], config.locations
     end
 
     def test_changes
-      assert_equal config_yml["changes"], config.changes
+      assert_equal config_yml['changes'], config.changes
     end
 
     def test_change_for
-      changes = config_yml["changes"]
+      changes = config_yml['changes']
       changes.each do |original, becomes|
         assert_equal becomes, config.change_for(original), "#{original} should become #{becomes}"
       end
     end
 
     def test_changeme_replacement
-      assert_equal config_yml["changeme"], config.changeme_replacement
+      assert_equal config_yml['changeme'], config.changeme_replacement
     end
 
     def test_load
       config = Config.load(config_file_path)
-      assert_equal config_yml["changes"], config.changes
+      assert_equal config_yml['changes'], config.changes
     end
 
     def config

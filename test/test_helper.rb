@@ -1,5 +1,5 @@
-require "minitest/autorun"
-require_relative "../lib/fedora_2_to_3_pid_renamer"
+require 'minitest/autorun'
+require_relative '../lib/fedora_2_to_3_pid_renamer'
 require 'nokogiri'
 
 class Minitest::Test
@@ -17,6 +17,6 @@ class Minitest::Test
   end
 
   def config_file_path
-    data_file_path "config.yml"
+    data_file_path 'config.yml'
   end
 end

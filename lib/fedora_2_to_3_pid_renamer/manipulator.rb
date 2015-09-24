@@ -10,6 +10,15 @@ module Fedora2To3PidRenamer
     end
 
     def run
+      modify_text_at_each_location_in_config
+    end
+
+    def xml
+      @xml ||= Nokogiri::XML(raw_xml)
+    end
+    
+    private
+    def modify_text_at_each_location_in_config
       config.locations.each do |location|
 
         node = xml.xpath(location, config.namespaces).first
@@ -20,13 +29,11 @@ module Fedora2To3PidRenamer
           text.gsub! before, after
         end
 
+        text.gsub! 'changeme:', (config.changeme_replacement + ':')
+        
         node.value = text
 
       end
-    end
-
-    def xml
-      @xml ||= Nokogiri::XML(raw_xml)
     end
 
   end

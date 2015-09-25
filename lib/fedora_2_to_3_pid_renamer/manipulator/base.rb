@@ -25,13 +25,8 @@ module Fedora2To3PidRenamer::Manipulator
     
     private
     def change(text, before, after)
-      pattern = Regexp.new("changeme:#{before}(#{end_of_string_or_non_word})")
-      
-      replacement = [
-        config.changeme_replacement,
-        after
-      ].join(':') + first_capture_group
-      
+      pattern = Regexp.new("changeme:#{before}(#{end_of_string_or_non_word})")      
+      replacement = "#{changeme_replacement}:#{after}#{first_capture_group}"     
       text.gsub! pattern, replacement
     end
     
@@ -41,6 +36,10 @@ module Fedora2To3PidRenamer::Manipulator
     
     def first_capture_group
       '\1'
+    end
+    
+    def changeme_replacement
+      config.changeme_replacement
     end
   end
 end

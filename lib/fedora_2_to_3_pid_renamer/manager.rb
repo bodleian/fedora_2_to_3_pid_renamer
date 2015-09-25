@@ -20,13 +20,21 @@ module Fedora2To3PidRenamer
         file_name = File.basename input_file
         input = File.read input_file        
         output_file = File.join config.output_folder, file_name
-        File.write output_file, Manipulator.output_for(input, config)
-        puts output_file
+        manipulator = case file_name
+        when /\.xml$/
+          XmlManipulator
+        when /cmodel-\d+\.deployments.txt/
+          TextManipulator
+        else
+          nil
+        end
+        next unless manipulator
+        File.write output_file, manipulator.output_for(input, config)
       end
     end
     
     def input_file_pattern
-      File.join config.input_folder, '*.xml'
+      File.join config.input_folder, '*'
     end
   end
 end

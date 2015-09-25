@@ -2,9 +2,9 @@
 # the settings defined in the config.
 require 'nokogiri'
 module Fedora2To3PidRenamer
-  class Manipulator
+  class XmlManipulator
 
-    attr_accessor :raw_xml, :config
+    attr_reader :raw_xml, :config
     
     def self.output_for(raw_xml, config)
       manipulator = new(raw_xml, config)

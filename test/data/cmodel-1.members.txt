@@ -1,0 +1,30 @@
+# The following objects will be assigned to cmodel-1
+# <class-description>
+# OrigContentModel
+#   'UVA_MRSID_IMAGE'
+# BDefPIDs
+#   'demo:8'
+# BMechPIDs
+#   'demo:9'
+# BindingKeyAssignments
+#   for demo:9
+#     'MRSID=DS1'
+# DatastreamIDs
+#   'DIGIPROV1', 'DS1', 'SOURCE1', 'DESC1', 'RIGHTS1', 'TECH1'
+# MIMETypes
+#   for DIGIPROV1, 'text/xml'
+#   for DS1, 'image/x-mrsid-image'
+#   for SOURCE1, 'text/xml'
+#   for DESC1, 'text/xml'
+#   for RIGHTS1, 'text/xml'
+#   for TECH1, 'text/xml'
+# FormatURIs
+#   for DIGIPROV1, none
+#   for DS1, none
+#   for SOURCE1, none
+#   for DESC1, none
+#   for RIGHTS1, none
+#   for TECH1, none
+# </class-description>
+demo:11
+demo:10

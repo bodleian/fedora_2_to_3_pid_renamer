@@ -1,0 +1,7 @@
+# The following BMechs will be copied and written as FOXML1.1 service deployments
+# with new PIDs and part names as given below
+OLD_BMECH demo:9
+NEW_DEPLOYMENTS changeme:CModel1-SDep1
+NEW_PARTS MRSID=DS1
+
+

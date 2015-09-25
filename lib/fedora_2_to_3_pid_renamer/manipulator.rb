@@ -1,3 +1,5 @@
+# Manipulator is the tool used to modify the XML files passed to it based on
+# the settings defined in the config.
 require 'nokogiri'
 module Fedora2To3PidRenamer
   class Manipulator

@@ -1,3 +1,6 @@
+# The Config object is used to read a config file and pass around the settings
+# defined in that file.
+# See the README.md and test/data/config.xml for sample config.yml files.
 require 'yaml'
 module Fedora2To3PidRenamer
   class Config

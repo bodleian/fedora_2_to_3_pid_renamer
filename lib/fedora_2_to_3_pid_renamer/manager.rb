@@ -1,4 +1,5 @@
-
+# Manager manages the process of modify a group of XML file as defined via
+# a config object
 module Fedora2To3PidRenamer
   class Manager
     

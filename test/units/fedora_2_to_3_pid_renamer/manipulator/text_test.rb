@@ -1,7 +1,7 @@
-require_relative '../../test_helper'
+require_relative '../../../test_helper'
 
-module Fedora2To3PidRenamer
-  class TextManipulatorTest < Minitest::Test
+module Fedora2To3PidRenamer::Manipulator
+  class TextTest < Minitest::Test
 
     def test_run
       before = 'changeme:CModel1-SDep1'
@@ -26,7 +26,7 @@ module Fedora2To3PidRenamer
     
     private
     def text_manipulator
-      @text_manipulator ||= TextManipulator.new(file_text, config)
+      @text_manipulator ||= Text.new(file_text, config)
     end
     
     def file_text

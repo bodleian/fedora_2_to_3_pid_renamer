@@ -1,30 +1,29 @@
 
-module Fedora2To3PidRenamer
-  class TextManipulator
+
+module Fedora2To3PidRenamer::Manipulator
+  class Base
+    attr_reader :source, :config
     
-    attr_reader :text, :config
-    
-    def self.output_for(text, config)
-      manipulator = new(text, config)
+    def self.output_for(*args)
+      manipulator = new(*args)
       manipulator.run
       manipulator.output
     end
     
-    def initialize(text, config)
-      @text = text
+    def initialize(source, config)
+      @source = source
       @config = config
     end
     
     def run
-      config.changes.each do |before, after|
-        change(text, before, after)
-      end
+      raise 'run must be defined in sub-classes'
     end
     
     def output
-      text
+      raise 'output must be defined in sub-classes'
     end
     
+    private
     def change(text, before, after)
       pattern = Regexp.new("changeme:#{before}(#{end_of_string_or_non_word})")
       
@@ -37,12 +36,11 @@ module Fedora2To3PidRenamer
     end
     
     def end_of_string_or_non_word 
-      '[$\W]'
+      '$|\W'
     end
     
     def first_capture_group
       '\1'
     end
-    
   end
 end

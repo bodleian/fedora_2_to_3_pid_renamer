@@ -1,21 +1,10 @@
 # Manipulator is the tool used to modify the XML files passed to it based on
 # the settings defined in the config.
 require 'nokogiri'
-module Fedora2To3PidRenamer
-  class XmlManipulator
+module Fedora2To3PidRenamer::Manipulator
+  class Xml < Base
 
-    attr_reader :raw_xml, :config
-    
-    def self.output_for(raw_xml, config)
-      manipulator = new(raw_xml, config)
-      manipulator.run
-      manipulator.output
-    end
-
-    def initialize(raw_xml, config)
-      @raw_xml = raw_xml
-      @config = config
-    end
+    alias_method :raw_xml, :source
 
     def run
       modify_text_at_each_location_in_config
@@ -38,11 +27,8 @@ module Fedora2To3PidRenamer
         
         text = node.value
         config.changes.each do |before, after|
-          text.gsub! before, after
-        end
-
-        text.gsub! 'changeme:', (config.changeme_replacement + ':')
-        
+          change(text, before, after)
+        end       
         node.value = text
 
       end

@@ -1,7 +1,7 @@
-require_relative '../../test_helper'
+require_relative '../../../test_helper'
 
-module Fedora2To3PidRenamer
-  class XmlManipulatorTest < Minitest::Test
+module Fedora2To3PidRenamer::Manipulator
+  class XmlTest < Minitest::Test
 
     def test_run
       before, after = config.changes.first      
@@ -31,7 +31,7 @@ module Fedora2To3PidRenamer
     
     def test_output_for
       xml_manipulator.run
-      assert_equal xml_manipulator.output, XmlManipulator.output_for(xml_raw, config)
+      assert_equal xml_manipulator.output, Xml.output_for(xml_raw, config)
     end
     
     private
@@ -51,7 +51,7 @@ module Fedora2To3PidRenamer
     
 
     def xml_manipulator
-      @xml_manipulator ||= XmlManipulator.new(xml_raw, config)
+      @xml_manipulator ||= Xml.new(xml_raw, config)
     end
 
     def xml_raw
